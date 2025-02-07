@@ -1,0 +1,128 @@
+    1  git clone https://github.com/stineje/ecen4243S25.git
+    2  ls 
+    3  cd desktop
+    4  cd Desktop
+    5  ls
+    6  cd ecen4243S25/
+    7  ls
+    8  cd lab0
+    9  ls
+   10  source /opt/modpath.sh
+   11  vsim -do fsm.do
+   12  vsim -do fsm.do -c
+   13  source /opt/modpath.sh
+   14  vsim -do fsm.do
+   15  q
+   16  la
+   17  ls
+   18  cd SV
+   19  ls
+   20  vsim -do fsm.do
+   21  vsim -do wave.do
+   22  vsim -do fsm.do
+   23  q
+   24  vsim -do fsm.do
+   25  cd ..
+   26  git clone https://github.com/QuentinKoeninger/Lab0CompArch.git
+   27  ls
+   28  cd ecen4243S25/
+   29  ls
+   30  cd lab0
+   31  cd SV
+   32  cd tb
+   33  vsim -do fsm.do
+   34  vsim -do regfile.do
+   35  ssh-keygen -t rsa -b 4096 -C "joe@example.com"
+   36  ssh-keygen -t rsa -b 4096 -C "qkoenin@okstate.edu"
+   37  cd ~/.ssh
+   38  ls
+   39  more id_rsa.pb
+   40  more id_rsa.pub
+   41  cd ..
+   42  cd Desktop
+   43  ls
+   44  cd 11-comp-arch-f
+   45  cd Desktop
+   46  git branch
+   47  ls
+   48  cd ecen4243S25
+   49  ls
+   50  git branch
+   51  git checkout ecen4243S25QR
+   52  git checkout -b QuentinRailey
+   53  git add *
+   54  git commit -m "completed lab0 quentin railey"
+   55  git config -- global user.email "qkoenin@okstate.edu"
+   56  git config --global user.email "qkoenin@okstate.edu"
+   57  git config --global user.name "QuentinKoeninger"
+   58  git commit -m "completed lab0 quentin railey"
+   59  git push
+   60  ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDAe8r6rPs97FBM0ccGLnOxV7Lf7duuAJOF1MQz1Gx8
+   61  DYxD7UJu5Aq3IRMjEVG2HFoR7ftZ3GeXrVKszqFTlYY/SzgUuLBmpo9gJNzFRqmZBuxEepRZzWYxiLl1
+   62  HRgoYzdNIDzzSlR92hbxYS53YWVGWBRvjEA4LGImui27OHaSDACpeF4YuWR+jQON/rJFvaDjsOXSDfHg
+   63  RT5cQVoo0/bved0GvGUOQSZhr/BD0DWbnbYp1D/KUsnONCWFmKblkVFoDD2rQKqAdhPObNdpxAg6hjYr
+   64  j5Y9mIsi/d1KiGGtL90b5zxRAkWM0KYBjnhV4yLVHgM26ZU5XhdAUON1TEs7a1ksd6MsDqig/IMDL6NA
+   65  doRW0vOis0JLIC08gmz/XGB79h2EQ+nW3VMxffJB3znpncNW1nX/zwXMyeh8DD17m4iPv1fX8Kjz1Dv0
+   66  ceO0qerPc1XAVP2u6n15MEuWyWV7eAj+hHSodu5liyC18lm/RlZAF+Z5lvuY4vrWBMRkWbzJk
+   67  git push --set-upstream origin QuentinRailey
+   68  git clone --recurse-submodules https://github.com/<QuentinKoeninger>/cvw
+   69  git clone --recurse-submodules https://github.com/QuentinKoeninger/cvw
+   70  cd cvw
+   71  source ./setup.sh
+   72  echo $Wally$
+   73  a
+   74  cd examples/C/hello
+   75  make
+   76  wsim --sim questa rv64gc --elf hello
+   77  cd $Wally/exapmles/asm/example
+   78  cd $WALLY/exapmles/asm/example
+   79  cd $WALLY/examples/asm/example
+   80  [200~riscv64-unknown-elf-gcc -o example -march=rv32i -mabi=ilp32 -mcmodel=medany \
+   81  riscv64-unkonown-elf-gcc -o example -march=rv32i -mabi=ilp32 -mcmodel=medany \ -nostartfiles -T../../link/link.ld example.S
+   82  riscv64-unknown-elf-gcc -o example -march=rv32i -mabi=ilp32 -mcmodel=medany \ -nostartfiles -T../../link/link.ld example.S
+   83  riscv64-unknown-elf-gcc -o example -march=rv32i -mabi=ilp32 -mcmodel=medany -nostartfiles -T../../link/link.ld example.S
+   84  riscv64-unknown-elf-objdump -D example > example.objdump
+   85  cat common/test.ld
+   86  cat $WALLY/common/test.ld
+   87  cd \$WALLY/../ecen4243S25/"lab 1"
+   88  cd ..
+   89  cd ecen4243S25/
+   90  cd "lab 1"
+   91  ls
+   92  cd lab1
+   93  cat common/test.ld
+   94  cat Makefile
+   95  make
+   96  make clean
+   97  cd $WALLY/examples/asm/sumtest
+   98  make
+   99  spike +signature=sumtest.signature.output sumtest
+  100  diff sumtest.signature.output sumtest.reference_output
+  101  ls
+  102  cat sum.S
+  103  cat sumtest.signature.output
+  104  cat sumtest.reference_output
+  105  make sim
+  106  cat Makefile
+  107  make sim
+  108  riscv64-unknown-elf-readelf -a sumtest
+  109  cd $Wally/examples/C/sum
+  110  cd $WALLY/examples/C/sum
+  111  make
+  112  spike sum
+  113  cat Makefile
+  114  wsim --sim questa rv64gc --elf sum
+  115  history
+  116  cat history
+  117  cd \$WALLY/../ecen4243S25/lab1
+  118  cd $WALLY/../ecen4243S25/lab1
+  119  history
+  120  more history
+  121  history --more
+  122  history more
+  123  more --history
+  124  history --help
+  125  history ./sec2sec3logs
+  126  history -anrw ./sec2sec3logs
+  127  history -w ./sec2sec3logs
+  128  history > sec2sec3logs

@@ -65,7 +65,6 @@ loopi:
     srli a6, a6, 31
     //slli a7, a7, 1
 
-    // Add the upper and lower values into sum
     add t3, t3, a6
     //add t3, t3, a7
 

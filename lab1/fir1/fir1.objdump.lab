@@ -5,6 +5,9 @@ verifyDouble
 barrier
 lfsr
 insn_len
+add_q31
+mul_q31
+fir
 main
 verify
 verifyDouble
@@ -41,9 +44,5 @@ strnlen
 strcmp
 strcpy
 atol
-fir
-loopj
-loopi
-donej
 tohost
 fromhost

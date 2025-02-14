@@ -10,7 +10,7 @@
    77  cd $Wally/exapmles/asm/example
    78  cd $WALLY/exapmles/asm/example
    79  cd $WALLY/examples/asm/example
-   80  [200~riscv64-unknown-elf-gcc -o example -march=rv32i -mabi=ilp32 -mcmodel=medany \
+   80  riscv64-unknown-elf-gcc -o example -march=rv32i -mabi=ilp32 -mcmodel=medany \
    81  riscv64-unkonown-elf-gcc -o example -march=rv32i -mabi=ilp32 -mcmodel=medany \ -nostartfiles -T../../link/link.ld example.S
    82  riscv64-unknown-elf-gcc -o example -march=rv32i -mabi=ilp32 -mcmodel=medany \ -nostartfiles -T../../link/link.ld example.S
    83  riscv64-unknown-elf-gcc -o example -march=rv32i -mabi=ilp32 -mcmodel=medany -nostartfiles -T../../link/link.ld example.S

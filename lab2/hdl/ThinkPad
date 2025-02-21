@@ -1,0 +1,13 @@
+xor instruction:
+    maindec outputs
+        RegWrite = b1
+        ImmSrc = bxx
+        ALUSrc = b0
+        MemWrite = b0
+        ResultSrc = b0
+        Branch = b0
+        ALU0p = b10
+        Jump = 0
+    aludec outputs
+        ALUControl = b100
+    

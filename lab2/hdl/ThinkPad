@@ -10,4 +10,7 @@ xor instruction:
         Jump = 0
     aludec outputs
         ALUControl = b100
+lui
+    maindec outputs
+        Regwrite
     

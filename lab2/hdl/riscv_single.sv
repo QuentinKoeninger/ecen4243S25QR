@@ -31,12 +31,12 @@
 xor       good          0110011   100       0000000 good
 xori      good          0010011   100       - good 
 2: Shift ALU
-sll
-srl
-srli
-slri
-sltiu
-sltu
+sll       good
+srl       good
+srli      good
+slri      good
+sltiu     good
+sltu      good
 sra
 srai
 3:
@@ -47,15 +47,15 @@ lh
 lbu
 lb
 4:
-lui     good          0110111   -     good    -
-auipc   good
-5:
-jalr    good
-bne     good           1100011   001   good    -
-bltu    good
-blt     good
-bgeu    good
-bge     good
+lui       good          0110111   -     good    -
+auipc     good
+5:  
+jalr      good
+bne       good           1100011   001   good    -
+bltu      good
+blt       good
+bgeu      good
+bge       good
 
 */
 
@@ -78,7 +78,7 @@ module testbench();
    initial
      begin
 	string memfilename;
-        memfilename = {"../testing/bgeu.memfile"};
+        memfilename = {"../testing/sra.memfile"};
         $readmemh(memfilename, dut.imem.RAM);
      end
 
@@ -209,11 +209,14 @@ module aludec (input  logic       opb5,
 		   3'b000: if (RtypeSub)
 		    ALUControl = 5'b00001; // sub
 		   else
-		    ALUControl = 5'b0000; // add, addi
+		    ALUControl = 5'b00000; // add, addi
 		   3'b010: ALUControl = 5'b00101; // slt, slti
 		   3'b110: ALUControl = 5'b00011; // or, ori
 		   3'b111: ALUControl = 5'b00010; // and, andi
        3'b100: ALUControl = 5'b00110; // xor, xori
+       3'b001: ALUControl = 5'b00100; // sll, slli
+       3'b101: ALUControl = {1'b0, funct7b5, 3'b111}; // slr, slri
+       3'b011: ALUControl = 5'b01101; // sltu, sltiu
 		  default: ALUControl = 5'bxxxxx; // ???
 		endcase // case (funct3)       
      endcase // case (ALUOp)
@@ -375,6 +378,7 @@ module alu (input  logic [31:0] a, b,
 
    logic [31:0] 	       condinvb, sum;
    logic 		       v;              // overflow
+   logic           w;
    logic 		       isAddSub;       // true when is add or subtract operation
 
    assign condinvb = alucontrol[0] ? ~b : b;
@@ -384,12 +388,14 @@ module alu (input  logic [31:0] a, b,
 
    always_comb
      case (alucontrol[2:0])
-       3'b000:  result = sum;         // add
-       3'b001:  result = sum;         // subtract
-       3'b010:  result = a & b;       // and
-       3'b011:  result = a | b;       // or
-       3'b101:  result = sum[31] ^ v; // slt
-       3'b110:  result = a ^ b;        // xor
+       3'b000:  result = sum;           // add
+       3'b001:  result = sum;           // subtract
+       3'b010:  result = a & b;         // and
+       3'b011:  result = a | b;         // or
+       3'b101:  result = (alucontrol[3]) ? w : (sum[31] ^ v);  // slt and sltu
+       3'b110:  result = a ^ b;         // xor
+       3'b100:  result = a << b[4:0];   // sll
+       3'b111:  result = (alucontrol[3]) ? (a >>> b[4:0]) : (a >> b[4:0]);   // slr
        default: result = 32'bx;
      endcase
 
@@ -397,12 +403,13 @@ module alu (input  logic [31:0] a, b,
      case (alucontrol[4:3])
        2'b00:  zero = (result == 32'b0);
        2'b10:  zero = result[31] & 1'b1;
-       2'b11:  zero = $unsigned(a) < $unsigned(b);
+       2'b11:  zero = w;
        default: zero = 1'bx ;
      endcase
 
    // assign zero = ((result == 32'b0) & !alucontrol[3]) | ((result < 32'b0) & alucontrol[3]);
    assign v = ~(alucontrol[0] ^ a[31] ^ b[31]) & (a[31] ^ sum[31]) & isAddSub;
+   assign w = $unsigned(a) < $unsigned(b);
    
 endmodule // alu
 

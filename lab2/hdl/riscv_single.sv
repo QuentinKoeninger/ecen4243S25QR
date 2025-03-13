@@ -37,15 +37,15 @@ srli      good
 slri      good
 sltiu     good
 sltu      good
-sra
-srai
+sra       good
+srai      good
 3:
-sb
-sh
-lhu
-lh
-lbu
-lb
+sb        maybe
+sh        maybe
+lhu       maybe
+lh        maybe
+lbu       maybe
+lb        maybe
 4:
 lui       good          0110111   -     good    -
 auipc     good
@@ -78,7 +78,7 @@ module testbench();
    initial
      begin
 	string memfilename;
-        memfilename = {"../testing/sra.memfile"};
+        memfilename = {"../testing/lh.memfile"};
         $readmemh(memfilename, dut.imem.RAM);
      end
 
@@ -117,12 +117,13 @@ module riscvsingle (input  logic        clk, reset,
 		    input  logic [31:0] Instr,
 		    output logic 	MemWrite,
 		    output logic [31:0] ALUResult, WriteData,
-		    input  logic [31:0] ReadData);
+		    input  logic [31:0] ReadData1);
    
    logic 				      RegWrite, Jump, Zero;
    logic [1:0] 				ResultSrc, ALUSrc;
    logic [4:0] 				ALUControl;
    logic [2:0]        ImmSrc;
+   logic [31:0]       WriteData1, ReadData;
    
    // Controller and datapath handle everything to do with the outputs of riscvsingle
    controller c (Instr[6:0], Instr[14:12], Instr[30], Zero,
@@ -133,7 +134,25 @@ module riscvsingle (input  logic        clk, reset,
 		RegWrite,
 		ImmSrc, ALUControl,
 		Zero, PC, Instr,
-		ALUResult, WriteData, ReadData);
+		ALUResult, WriteData1, ReadData);
+
+
+    // I think this code will work for the stores and loads, now just implement on the fpga
+    always_comb
+      case(Instr[14:12])  // funct3
+        3'b000:   ReadData = {{24{ReadData1[7]}}, ReadData1[7:0]};    // Load Byte
+        3'b001:   ReadData = {{16{ReadData1[15]}}, ReadData1[15:0]};  // Load Half
+        3'b100:   ReadData = {24'b0, ReadData1[7:0]};                 // Load Byte Unsigned
+        3'b101:   ReadData = {16'b0, ReadData1[15:0]};                // Load Half Unsigned
+        default:  ReadData = ReadData1; // Load Word
+      endcase
+    
+    always_comb
+      case(Instr[14:12])  // funct3
+        3'b000:   WriteData = {{24{WriteData1[7]}}, WriteData1[7:0]};   // Store Byte
+        3'b001:   WriteData = {{16{WriteData1[15]}}, WriteData1[15:0]}; // Store Half
+        default:  WriteData = WriteData1; // Store Word
+      endcase
    
 endmodule // riscvsingle
 
@@ -395,7 +414,7 @@ module alu (input  logic [31:0] a, b,
        3'b101:  result = (alucontrol[3]) ? w : (sum[31] ^ v);  // slt and sltu
        3'b110:  result = a ^ b;         // xor
        3'b100:  result = a << b[4:0];   // sll
-       3'b111:  result = (alucontrol[3]) ? (a >>> b[4:0]) : (a >> b[4:0]);   // slr
+       3'b111:  result = (alucontrol[3]) ? ((a >> $unsigned(b[4:0])) + ({32{a[31]}} << $unsigned(32 - b[4:0]))) : (a >> $unsigned(b[4:0]));   // slr
        default: result = 32'bx;
      endcase
 

@@ -17,7 +17,7 @@
 # ** Warning: (vlib-34) Library already exists at "work".
 # Errors: 0, Warnings: 1
 # QuestaSim-64 vlog 2024.3_2 Compiler 2024.11 Nov 25 2024
-# Start time: 14:31:56 on Mar 13,2025
+# Start time: 15:06:44 on Mar 14,2025
 # vlog -reportprogress 300 riscv_single.sv 
 # -- Compiling module testbench
 # -- Compiling module riscvsingle
@@ -42,16 +42,16 @@
 # 	testbench
 # 	flopenr
 # 	mux3
-# End time: 14:31:56 on Mar 13,2025, Elapsed time: 0:00:00
+# End time: 15:06:44 on Mar 14,2025, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vsim -debugdb -voptargs="+acc" work.testbench 
-# Start time: 14:31:56 on Mar 13,2025
+# Start time: 15:06:44 on Mar 14,2025
 # ** Note: (vsim-3812) Design is being optimized...
 # ** Note: (vsim-8611) Generating debug db.
 # ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility. The +acc switch would be deprecated in a future release.
 # Support of the MGLS_LICENSE_FILE and LM_LICENSE_FILE licensing environment variables will be discontinued starting with the 2025.1 release. Please update to using the SALT_LICENSE_SERVER variable.
 # Please contact Siemens EDA Customer Support (https://support.sw.siemens.com/) for assistance.
-# ** Note: (vopt-4301) Memory core inferred for signal 'RAM' width=32, depth=256, type=RAM at location riscv_single.sv:383
+# ** Note: (vopt-4301) Memory core inferred for signal 'RAM' width=32, depth=256, type=RAM at location riscv_single.sv:387
 # ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=1.
 # Loading sv_std.std
 # Loading work.testbench(fast)
@@ -71,8 +71,11 @@
 # Loading work.imem(fast)
 # Loading work.dmem(fast)
 # ** Note: (vsim-8900) Creating design debug database vsim.dbg.
-# ** Warning: (vsim-PLI-3407) Too many data words read on line 1026 of file "../testing/lh.memfile". (Current address [1025], address range [0:1024])    : riscv_single.sv(82)
+# ** Warning: (vsim-PLI-3407) Too many data words read on line 1026 of file "../testing/sw.memfile". (Current address [1025], address range [0:1024])    : riscv_single.sv(81)
 #    Time: 0 ns  Iteration: 0  Instance: /testbench
-find drivers -source -time {56 ns} -chasex sim:/testbench/dut/rv32single/dp/Result
-# End time: 14:36:53 on Mar 13,2025, Elapsed time: 0:04:57
+# Simulation failed
+# ** Note: $stop    : riscv_single.sv(108)
+#    Time: 75 ns  Iteration: 1  Instance: /testbench
+# Break in Module testbench at riscv_single.sv line 108
+# End time: 15:07:10 on Mar 14,2025, Elapsed time: 0:00:26
 # Errors: 0, Warnings: 2

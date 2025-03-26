@@ -44,7 +44,6 @@ sb        maybe
 sh        maybe
 lhu       maybe
 lh        maybe
-lbu       maybe
 lb        maybe
 4:
 lui       good          0110111   -     good    -
@@ -78,7 +77,7 @@ module testbench();
    initial
      begin
 	string memfilename;
-        memfilename = {"../testing/lh.memfile"};
+        memfilename = {"../testing/sw.memfile"};
         $readmemh(memfilename, dut.imem.RAM);
      end
 
@@ -117,7 +116,8 @@ module riscvsingle (input  logic        clk, reset,
 		    input  logic [31:0] Instr,
 		    output logic 	MemWrite,
 		    output logic [31:0] ALUResult, WriteData,
-		    input  logic [31:0] ReadData1);
+		    input  logic [31:0] ReadData1,
+        output logic  MemStrobe);
    
    logic 				      RegWrite, Jump, Zero;
    logic [1:0] 				ResultSrc, ALUSrc;
@@ -129,7 +129,7 @@ module riscvsingle (input  logic        clk, reset,
    controller c (Instr[6:0], Instr[14:12], Instr[30], Zero,
 		 ResultSrc, ALUSrc, MemWrite, PCSrc,
 		  RegWrite, Jump,
-		 ImmSrc, ALUControl);
+		 ImmSrc, ALUControl, MemStrobe);
    datapath dp (clk, reset, ResultSrc, ALUSrc, PCSrc,
 		RegWrite,
 		ImmSrc, ALUControl,
@@ -165,14 +165,15 @@ module controller (input  logic [6:0] op,
 		   output logic       PCSrc,
 		   output logic       RegWrite, Jump,
 		   output logic [2:0] ImmSrc,
-		   output logic [4:0] ALUControl);
+		   output logic [4:0] ALUControl,
+       output logic       MemStrobe);
    
    logic [1:0] 			      ALUOp;
    logic 			      Branch;
    
    // maindec assigns deals with Jump, Branch
    maindec md (op, ResultSrc, ALUSrc, MemWrite, Branch,
-	       RegWrite, Jump, ImmSrc, ALUOp);
+	       RegWrite, Jump, ImmSrc, ALUOp, MemStrobe);
    // aludec deals with funct3
    aludec ad (op[5], funct3, funct7b5, ALUOp, ALUControl);
    // Zero is an input to the module
@@ -186,26 +187,27 @@ module maindec (input  logic [6:0] op,
 		output logic 	   Branch, 
 		output logic 	   RegWrite, Jump,
 		output logic [2:0] ImmSrc,
-		output logic [1:0] ALUOp);
+		output logic [1:0] ALUOp,
+    output logic       MemStrobe);
    
-   logic [12:0] 		   controls;
+   logic [13:0] 		   controls;
    
    assign {RegWrite, ImmSrc, ALUSrc, MemWrite,
-	   ResultSrc, Branch, ALUOp, Jump} = controls;
+	   ResultSrc, Branch, ALUOp, Jump, MemStrobe} = controls;
    
    always_comb
      case(op)
        // RegWrite_ImmSrc_ALUSrc_MemWrite_ResultSrc_Branch_ALUOp_Jump
-       7'b0000011: controls = 13'b1_000_01_0_01_0_00_0; // lw
-       7'b0100011: controls = 13'b0_001_01_1_00_0_00_0; // sw
-       7'b0110011: controls = 13'b1_xxx_00_0_00_0_10_0; // R–type
-       7'b1100011: controls = 13'b0_010_00_0_00_1_01_0; // beq
-       7'b0010011: controls = 13'b1_000_01_0_00_0_10_0; // I–type ALU
-       7'b1101111: controls = 13'b1_011_00_0_10_0_00_1; // jal
-       7'b1100111: controls = 13'b1_000_01_0_10_0_00_1; // jalr
-       7'b0110111: controls = 13'b1_100_00_0_11_0_00_0; // lui
-       7'b0010111: controls = 13'b1_100_11_0_00_0_00_0; // auipc
-       default: controls = 12'bx_xxx_x_x_xx_x_xx_x; // ???
+       7'b0000011: controls = 14'b1_000_01_0_01_0_00_0_1; // lw
+       7'b0100011: controls = 14'b0_001_01_1_00_0_00_0_1; // sw
+       7'b0110011: controls = 14'b1_xxx_00_0_00_0_10_0_0; // R–type
+       7'b1100011: controls = 14'b0_010_00_0_00_1_01_0_0; // beq
+       7'b0010011: controls = 14'b1_000_01_0_00_0_10_0_0; // I–type ALU
+       7'b1101111: controls = 14'b1_011_00_0_10_0_00_1_0; // jal
+       7'b1100111: controls = 14'b1_000_01_0_10_0_00_1_0; // jalr
+       7'b0110111: controls = 14'b1_100_00_0_11_0_00_0_0; // lui
+       7'b0010111: controls = 14'b1_100_11_0_00_0_00_0_0; // auipc
+       default: controls = 14'bx_xxx_xx_x_xx_x_xx_x_x; // ???
      endcase // case (op)
    
 endmodule // maindec
@@ -360,10 +362,10 @@ module top (input  logic        clk, reset,
 	    output logic 	MemWrite);
    
    logic [31:0] 		PC, Instr, ReadData;
-   
+   logic            MemStrobe;
    // instantiate processor and memories
    riscvsingle rv32single (clk, reset, PC, Instr, MemWrite, DataAdr,
-			   WriteData, ReadData);
+			   WriteData, ReadData, MemStrobe);
    imem imem (PC, Instr);
    dmem dmem (clk, MemWrite, DataAdr, WriteData, ReadData);
    

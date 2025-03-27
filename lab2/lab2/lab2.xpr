@@ -108,8 +108,10 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/../../../riscv_single.sv">
-        <FileInfo RelPath="riscv_single.sv">
+      <File Path="$PSRCDIR/sources_1/imports/Desktop/riscv_single.sv">
+        <FileInfo>
+          <Attr Name="ImportPath" Val="$PPRDIR/../../../riscv_single.sv"/>
+          <Attr Name="ImportTime" Val="1743041496"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>

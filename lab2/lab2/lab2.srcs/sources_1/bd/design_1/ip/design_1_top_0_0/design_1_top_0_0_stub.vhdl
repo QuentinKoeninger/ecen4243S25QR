@@ -1,10 +1,11 @@
--- Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
+-- Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+-- Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
--- Tool Version: Vivado v.2020.2 (lin64) Build 3064766 Wed Nov 18 09:12:47 MST 2020
--- Date        : Wed Mar  1 15:49:02 2023
--- Host        : coco running 64-bit Ubuntu 22.04.2 LTS
+-- Tool Version: Vivado v.2023.2 (lin64) Build 4029153 Fri Oct 13 20:13:54 MDT 2023
+-- Date        : Fri Mar 14 15:40:38 2025
+-- Host        : CEAT-ENDV350-11L running 64-bit Ubuntu 22.04.5 LTS
 -- Command     : write_vhdl -force -mode synth_stub
---               /home/ross/repos/ELVIS/lab2/lab2.srcs/sources_1/bd/design_1/ip/design_1_top_0_0/design_1_top_0_0_stub.vhdl
+--               /home/11-comp-arch-f/Desktop/ecen4243S25QR/lab2/lab2/lab2.srcs/sources_1/bd/design_1/ip/design_1_top_0_0/design_1_top_0_0_stub.vhdl
 -- Design      : design_1_top_0_0
 -- Purpose     : Stub declaration of top-level module interface
 -- Device      : xc7z020clg484-1
@@ -32,6 +33,6 @@ attribute black_box_pad_pin : string;
 attribute syn_black_box of stub : architecture is true;
 attribute black_box_pad_pin of stub : architecture is "clk,reset,doneM,readDataM[31:0],writeDataM[31:0],addressM[31:0],DRW,AXIStart";
 attribute X_CORE_INFO : string;
-attribute X_CORE_INFO of stub : architecture is "top,Vivado 2020.2";
+attribute X_CORE_INFO of stub : architecture is "top,Vivado 2023.2";
 begin
 end;

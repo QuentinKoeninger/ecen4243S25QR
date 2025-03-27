@@ -1,4 +1,4 @@
-set_property SRC_FILE_INFO {cfile:/home/ross/repos/ELVIS/lab2/lab2.srcs/constrs_1/new/constr.xdc rfile:../../../lab2.srcs/constrs_1/new/constr.xdc id:1} [current_design]
+set_property SRC_FILE_INFO {cfile:/home/11-comp-arch-f/Desktop/ecen4243S25QR/lab2/lab2/lab2.srcs/constrs_1/new/constr.xdc rfile:../../../lab2.srcs/constrs_1/new/constr.xdc id:1} [current_design]
 set_property src_info {type:XDC file:1 line:1 export:INPUT save:INPUT read:READ} [current_design]
 set_property PACKAGE_PIN U12 [get_ports btn0]
 set_property src_info {type:XDC file:1 line:4 export:INPUT save:INPUT read:READ} [current_design]

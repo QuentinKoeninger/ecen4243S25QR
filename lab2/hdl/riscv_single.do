@@ -28,6 +28,7 @@ vlib work
 
 # compile source files
 vlog riscv_single.sv
+vlog memcontroller.sv
 
 # start and run simulation
 vsim -debugdb -voptargs=+acc work.testbench

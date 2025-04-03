@@ -3,12 +3,12 @@
 # SW Build 4029153 on Fri Oct 13 20:13:54 MDT 2023
 # IP Build 4028589 on Sat Oct 14 00:45:43 MDT 2023
 # SharedData Build 4025554 on Tue Oct 10 17:18:54 MDT 2023
-# Start of session at: Tue Mar 25 18:50:56 2025
-# Process ID: 4323
+# Start of session at: Wed Mar 26 21:27:38 2025
+# Process ID: 177781
 # Current directory: /home/11-comp-arch-f/Desktop/ecen4243S25QR/lab2/lab2/lab2.runs/synth_1
 # Command line: vivado -log design_1_wrapper.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source design_1_wrapper.tcl
 # Log file: /home/11-comp-arch-f/Desktop/ecen4243S25QR/lab2/lab2/lab2.runs/synth_1/design_1_wrapper.vds
 # Journal file: /home/11-comp-arch-f/Desktop/ecen4243S25QR/lab2/lab2/lab2.runs/synth_1/vivado.jou
-# Running On: CEAT-ENDV350-11L, OS: Linux, CPU Frequency: 799.644 MHz, CPU Physical cores: 14, Host memory: 16437 MB
+# Running On: CEAT-ENDV350-11L, OS: Linux, CPU Frequency: 920.035 MHz, CPU Physical cores: 14, Host memory: 16437 MB
 #-----------------------------------------------------------
 source design_1_wrapper.tcl -notrace

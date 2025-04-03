@@ -1,0 +1,49 @@
+# //  Questa Sim-64
+# //  Version 2024.3_2 linux_x86_64 Nov 25 2024
+# //
+# // Unpublished work. Copyright 2024 Siemens
+# //
+# // This material contains trade secrets or otherwise confidential information
+# // owned by Siemens Industry Software Inc. or its affiliates (collectively,
+# // "SISW"), or its licensors. Access to and use of this information is strictly
+# // limited as set forth in the Customer's applicable agreements with SISW.
+# //
+# // This material may not be copied, distributed, or otherwise disclosed outside
+# // of the Customer's facilities without the express written permission of SISW,
+# // and may not be used in any way not expressly authorized by SISW.
+# //
+# do riscv_single.do
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt".  Locker is jstine@sakuya.ecen.okstate.edu.
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt1".  Locker is 11-comp-arch-f@CEAT-ENDV350-11L.
+# ** Warning: (vlib-34) Library already exists at "work".
+# Errors: 0, Warnings: 1
+# QuestaSim-64 vlog 2024.3_2 Compiler 2024.11 Nov 25 2024
+# Start time: 20:22:40 on Mar 26,2025
+# vlog -reportprogress 300 riscv_single.sv 
+# -- Compiling module testbench
+# -- Compiling module riscvsingle
+# -- Compiling module controller
+# -- Compiling module maindec
+# -- Compiling module aludec
+# -- Compiling module datapath
+# -- Compiling module adder
+# -- Compiling module extend
+# -- Compiling module flopr
+# -- Compiling module flopenr
+# -- Compiling module mux2
+# -- Compiling module mux3
+# -- Compiling module mux4
+# -- Compiling module top
+# ** Error: (vlog-13069) riscv_single.sv(375): near "endmodule": syntax error, unexpected endmodule, expecting ';'.
+# ** Error: riscv_single.sv(392): (vlog-2730) Undefined variable: 'a'.
+# ** Error: riscv_single.sv(394): (vlog-2730) Undefined variable: 'we'.
+# ** Error: riscv_single.sv(394): (vlog-2730) Undefined variable: 'wd'.
+# -- Compiling module alu
+# -- Compiling module regfile
+# End time: 20:22:41 on Mar 26,2025, Elapsed time: 0:00:01
+# Errors: 4, Warnings: 0
+# ** Error: /opt/questasim/linux_x86_64/vlog failed.
+# Error in macro ./riscv_single.do line 30
+# /opt/questasim/linux_x86_64/vlog failed.
+#     while executing
+# "vlog riscv_single.sv"

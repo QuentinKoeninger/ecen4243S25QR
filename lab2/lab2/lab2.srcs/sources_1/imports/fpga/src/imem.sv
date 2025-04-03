@@ -3,7 +3,7 @@ module imem (input  logic [31:0] a,
    
    logic [31:0] 		 RAM[1024:0];
 
-   initial $readmemh("memfile.dat", RAM);   
+   initial $readmemh("../memfiles/memfile.dat", RAM);   
    assign rd = RAM[a[31:2]]; // word aligned
    
 endmodule // imem

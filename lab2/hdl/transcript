@@ -17,7 +17,7 @@
 # ** Warning: (vlib-34) Library already exists at "work".
 # Errors: 0, Warnings: 1
 # QuestaSim-64 vlog 2024.3_2 Compiler 2024.11 Nov 25 2024
-# Start time: 15:06:44 on Mar 14,2025
+# Start time: 21:20:40 on Mar 26,2025
 # vlog -reportprogress 300 riscv_single.sv 
 # -- Compiling module testbench
 # -- Compiling module riscvsingle
@@ -40,18 +40,28 @@
 # 
 # Top level modules:
 # 	testbench
-# 	flopenr
+# 	flopr
 # 	mux3
-# End time: 15:06:44 on Mar 14,2025, Elapsed time: 0:00:00
+# End time: 21:20:40 on Mar 26,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# QuestaSim-64 vlog 2024.3_2 Compiler 2024.11 Nov 25 2024
+# Start time: 21:20:40 on Mar 26,2025
+# vlog -reportprogress 300 memcontroller.sv 
+# -- Compiling module MemControl
+# 
+# Top level modules:
+# 	MemControl
+# End time: 21:20:40 on Mar 26,2025, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vsim -debugdb -voptargs="+acc" work.testbench 
-# Start time: 15:06:44 on Mar 14,2025
+# Start time: 21:20:40 on Mar 26,2025
 # ** Note: (vsim-3812) Design is being optimized...
 # ** Note: (vsim-8611) Generating debug db.
 # ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility. The +acc switch would be deprecated in a future release.
 # Support of the MGLS_LICENSE_FILE and LM_LICENSE_FILE licensing environment variables will be discontinued starting with the 2025.1 release. Please update to using the SALT_LICENSE_SERVER variable.
 # Please contact Siemens EDA Customer Support (https://support.sw.siemens.com/) for assistance.
-# ** Note: (vopt-4301) Memory core inferred for signal 'RAM' width=32, depth=256, type=RAM at location riscv_single.sv:387
+# ** Note: (vopt-143) Recognized 1 FSM in module "MemControl(fast)".
+# ** Note: (vopt-4301) Memory core inferred for signal 'RAM' width=32, depth=256, type=RAM at location riscv_single.sv:395
 # ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=1.
 # Loading sv_std.std
 # Loading work.testbench(fast)
@@ -61,7 +71,7 @@
 # Loading work.maindec(fast)
 # Loading work.aludec(fast)
 # Loading work.datapath(fast)
-# Loading work.flopr(fast)
+# Loading work.flopenr(fast)
 # Loading work.adder(fast)
 # Loading work.mux2(fast)
 # Loading work.regfile(fast)
@@ -70,12 +80,7 @@
 # Loading work.mux4(fast)
 # Loading work.imem(fast)
 # Loading work.dmem(fast)
+# Loading work.MemControl(fast)
 # ** Note: (vsim-8900) Creating design debug database vsim.dbg.
-# ** Warning: (vsim-PLI-3407) Too many data words read on line 1026 of file "../testing/sw.memfile". (Current address [1025], address range [0:1024])    : riscv_single.sv(81)
-#    Time: 0 ns  Iteration: 0  Instance: /testbench
-# Simulation failed
-# ** Note: $stop    : riscv_single.sv(108)
-#    Time: 75 ns  Iteration: 1  Instance: /testbench
-# Break in Module testbench at riscv_single.sv line 108
-# End time: 15:07:10 on Mar 14,2025, Elapsed time: 0:00:26
-# Errors: 0, Warnings: 2
+# End time: 21:48:10 on Mar 26,2025, Elapsed time: 0:27:30
+# Errors: 0, Warnings: 1

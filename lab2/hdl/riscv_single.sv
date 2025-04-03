@@ -77,7 +77,7 @@ module testbench();
    initial
      begin
 	string memfilename;
-        memfilename = {"../testing/sw.memfile"};
+        memfilename = {"../riscvtest/test_hw2.memfile"};
         $readmemh(memfilename, dut.imem.RAM);
      end
 
@@ -95,20 +95,20 @@ module testbench();
      end
 
    // check results
-   always @(negedge clk)
-     begin
-	if(MemWrite) begin
-           if(DataAdr === 100 & WriteData === 25) begin
-              $display("Simulation succeeded");
-              success = 1'b1;
-              $stop;
-           end else if (DataAdr !== 96) begin
-              $display("Simulation failed");
-              success = 1'b0;
-              $stop;
-           end
-	end
-     end
+  // always @(negedge clk)
+  //   begin
+	//if(MemWrite) begin
+  //         if(DataAdr === 100 & WriteData === 25) begin
+  //            $display("Simulation succeeded");
+  //            success = 1'b1;
+  //            $stop;
+  //         end else if (DataAdr !== 96) begin
+  //            $display("Simulation failed");
+  //            success = 1'b0;
+  //            $stop;
+  //         end
+	//end
+  //   end
 endmodule // testbench
 
 module riscvsingle (input  logic        clk, reset,
@@ -117,7 +117,8 @@ module riscvsingle (input  logic        clk, reset,
 		    output logic 	MemWrite,
 		    output logic [31:0] ALUResult, WriteData,
 		    input  logic [31:0] ReadData1,
-        output logic  MemStrobe);
+        output logic  MemStrobe,
+        input  logic  PCReady);
    
    logic 				      RegWrite, Jump, Zero;
    logic [1:0] 				ResultSrc, ALUSrc;
@@ -134,7 +135,7 @@ module riscvsingle (input  logic        clk, reset,
 		RegWrite,
 		ImmSrc, ALUControl,
 		Zero, PC, Instr,
-		ALUResult, WriteData1, ReadData);
+		ALUResult, WriteData1, ReadData, PCReady);
 
 
     // I think this code will work for the stores and loads, now just implement on the fpga
@@ -254,7 +255,8 @@ module datapath (input  logic        clk, reset,
 		 output logic [31:0] PC,
 		 input  logic [31:0] Instr,
 		 output logic [31:0] ALUResult, WriteData,
-		 input  logic [31:0] ReadData);
+		 input  logic [31:0] ReadData,
+     input  logic        PCReady);
    
    logic [31:0] 		     PCNext, PCPlus4, PCTarget1, PCTarget2;
    logic [31:0] 		     ImmExt;
@@ -262,7 +264,7 @@ module datapath (input  logic        clk, reset,
    logic [31:0] 		     Result;
    
    // next PC logic
-   flopr #(32) pcreg (clk, reset, PCNext, PC);
+   flopenr #(32) pcreg (clk, reset, PCReady, PCNext, PC);
    adder  pcadd4 (PC, 32'd4, PCPlus4);
    adder  pcaddbranch (PC, ImmExt, PCTarget1);
    mux2 #(32)  jalrpcmux   (ALUResult, PCTarget1, ImmSrc[1], PCTarget2);
@@ -363,18 +365,24 @@ module top (input  logic        clk, reset,
    
    logic [31:0] 		PC, Instr, ReadData;
    logic            MemStrobe;
+   logic            PCReady;
+
+   logic DRW, AXIStart, Trigger;
+
+   assign Trigger = MemWrite;
    // instantiate processor and memories
    riscvsingle rv32single (clk, reset, PC, Instr, MemWrite, DataAdr,
-			   WriteData, ReadData, MemStrobe);
+			   WriteData, ReadData, MemStrobe, PCReady);
    imem imem (PC, Instr);
    dmem dmem (clk, MemWrite, DataAdr, WriteData, ReadData);
+   MemControl memcontrol (PCReady, MemStrobe, MemWrite, Trigger, clk, reset, DRW, AXIStart);
    
 endmodule // top
 
 module imem (input  logic [31:0] a,
 	     output logic [31:0] rd);
    
-   logic [31:0] 		 RAM[1024:0];
+   logic [31:0] 		 RAM[2048:0];
    
    assign rd = RAM[a[31:2]]; // word aligned
    

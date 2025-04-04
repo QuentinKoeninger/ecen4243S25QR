@@ -78,6 +78,38 @@
 //   sw           0100011   010       immediate
 //   jal          1101111   immediate immediate
 
+/*
+4: Compare ALU
+xor                
+xori                
+3: Shift ALU
+sll       
+srl       
+srli      
+slri      
+sltiu     
+sltu      
+sra       
+srai      
+5:
+sb        
+sh        
+lhu       
+lh        
+lb        
+2:
+lui                 
+auipc     
+1:  
+jalr      
+bne                 
+bltu      
+blt       
+bgeu      
+bge       
+
+*/
+
 module testbench();
 
    logic        clk;
@@ -92,7 +124,7 @@ module testbench();
    initial
      begin
 	string memfilename;
-        memfilename = {"../riscvtest/riscvtest.memfile"};
+        memfilename = {"../testing/bne.memfile"};
 	$readmemh(memfilename, dut.imem.RAM);
      end
    
@@ -211,6 +243,7 @@ module controller(input  logic		 clk, reset,
    logic [1:0] 			     ALUOpD;
    logic [2:0] 			     ALUControlD;
    logic 			     ALUSrcD;
+   logic [2:0]     funct3E;
    
    // Decode stage logic
    maindec md(opD, ResultSrcD, MemWriteD, BranchD,
@@ -218,11 +251,11 @@ module controller(input  logic		 clk, reset,
    aludec  ad(opD[5], funct3D, funct7b5D, ALUOpD, ALUControlD);
    
    // Execute stage pipeline control register and logic
-   floprc #(10) controlregE(clk, reset, FlushE,
-                            {RegWriteD, ResultSrcD, MemWriteD, JumpD, BranchD, ALUControlD, ALUSrcD},
-                            {RegWriteE, ResultSrcE, MemWriteE, JumpE, BranchE, ALUControlE, ALUSrcE});
+   floprc #(13) controlregE(clk, reset, FlushE,
+                            {RegWriteD, ResultSrcD, MemWriteD, JumpD, BranchD, ALUControlD, ALUSrcD, funct3D},
+                            {RegWriteE, ResultSrcE, MemWriteE, JumpE, BranchE, ALUControlE, ALUSrcE, funct3E});
 
-   assign PCSrcE = (BranchE & ZeroE) | JumpE;
+   assign PCSrcE = (BranchE & (ZeroE ^ funct3E[0]))  | JumpE;
    assign ResultSrcEb0 = ResultSrcE[0];
    
    // Memory stage pipeline control register

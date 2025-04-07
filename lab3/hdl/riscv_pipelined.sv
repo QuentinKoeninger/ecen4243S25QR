@@ -127,8 +127,9 @@ module testbench();
    initial
      begin
 	string memfilename;
-        memfilename = {"../testing/auipc.memfile"};
+        memfilename = {"../riscvtest/fib.memfile"};
 	$readmemh(memfilename, dut.imem.RAM);
+  $readmemh(memfilename, dut.dmem.RAM);
      end
    
    // initialize test
@@ -352,7 +353,7 @@ module datapath(input logic clk, reset,
                 output logic 	    ZeroE, ltE, ltuE,
                 // Memory stage signals
                 input logic 	    MemWriteM, 
-                output logic [31:0] WriteDataM, ALUResultM,
+                output logic [31:0] WriteDataM2, ALUResultM,
                 input logic [31:0]  ReadDataM,
                 // Writeback stage signals
                 input logic 	    RegWriteW, 
@@ -379,15 +380,18 @@ module datapath(input logic clk, reset,
    logic [31:0] 		    PCPlus4E;
    logic [31:0] 		    PCTargetE, BranchTargetE;
    logic                opb5E, ImmSrcb1E;
+   logic [2:0]          funct3E;
    // Memory stage signals
-   logic [31:0] 		    PCPlus4M;
+   logic [31:0] 		    PCPlus4M, WriteDataM1;
    logic [31:0]         UTypeM;
+   logic [2:0]          funct3M;
    // Writeback stage signals
    logic [31:0] 		    ALUResultW;
-   logic [31:0] 		    ReadDataW;
+   logic [31:0] 		    ReadDataW1, ReadDataW2;
    logic [31:0] 		    PCPlus4W;
    logic [31:0] 		    ResultW; 
    logic [31:0]         UTypeW;
+   logic [2:0]          funct3W;
 
    // Fetch stage pipeline register and logic
    mux2    #(32) pcmux(PCPlus4F, PCTargetE, PCSrcE, PCNextF);
@@ -409,9 +413,9 @@ module datapath(input logic clk, reset,
    extend         ext(InstrD[31:7], ImmSrcD, ImmExtD);
    
    // Execute stage pipeline register and logic
-   floprc #(177) regE(clk, reset, FlushE, 
-                      {RD1D, RD2D, PCD, Rs1D, Rs2D, RdD, ImmExtD, PCPlus4D, opD[5], ImmSrcD[1]}, 
-                      {RD1E, RD2E, PCE, Rs1E, Rs2E, RdE, ImmExtE, PCPlus4E, opb5E, ImmSrcb1E});
+   floprc #(180) regE(clk, reset, FlushE, 
+                      {RD1D, RD2D, PCD, Rs1D, Rs2D, RdD, ImmExtD, PCPlus4D, opD[5], ImmSrcD[1], funct3D}, 
+                      {RD1E, RD2E, PCE, Rs1E, Rs2E, RdE, ImmExtE, PCPlus4E, opb5E, ImmSrcb1E, funct3E});
    
    mux3   #(32)  faemux(RD1E, ResultW, ALUResultM, ForwardAE, SrcAE);
    mux3   #(32)  fbemux(RD2E, ResultW, ALUResultM, ForwardBE, WriteDataE);
@@ -422,15 +426,19 @@ module datapath(input logic clk, reset,
    mux2   #(32)  immextmux(BranchTargetE, ImmExtE, opb5E, UTypeE);
 
    // Memory stage pipeline register
-   flopr  #(133) regM(clk, reset, 
-                      {ALUResultE, WriteDataE, RdE, PCPlus4E, UTypeE},
-                      {ALUResultM, WriteDataM, RdM, PCPlus4M, UTypeM});
+   flopr  #(136) regM(clk, reset, 
+                      {ALUResultE, WriteDataE, RdE, PCPlus4E, UTypeE, funct3E},
+                      {ALUResultM, WriteDataM1, RdM, PCPlus4M, UTypeM, funct3M});
+
+   storeloadcase stlMW (WriteDataM1, ReadDataW1, funct3M, funct3W, 
+                        WriteDataM2, ReadDataW2);
    
    // Writeback stage pipeline register and logic
-   flopr  #(133) regW(clk, reset, 
-                      {ALUResultM, ReadDataM, RdM, PCPlus4M, UTypeM},
-                      {ALUResultW, ReadDataW, RdW, PCPlus4W, UTypeW});
-   mux4   #(32)  resultmux(ALUResultW, ReadDataW, PCPlus4W, UTypeW, ResultSrcW, ResultW);	
+   flopr  #(136) regW(clk, reset, 
+                      {ALUResultM, ReadDataM, RdM, PCPlus4M, UTypeM, funct3M},
+                      {ALUResultW, ReadDataW1, RdW, PCPlus4W, UTypeW, funct3W});
+
+   mux4   #(32)  resultmux(ALUResultW, ReadDataW1, PCPlus4W, UTypeW, ResultSrcW, ResultW);	
 endmodule
 
 // Hazard Unit: forward, stall, and flush
@@ -584,9 +592,10 @@ endmodule // mux4
 module imem (input  logic [31:0] a,
 	     output logic [31:0] rd);
    
-   logic [31:0] 		 RAM[1023:0];
+   logic [31:0] 		 RAM[2047:0];
    
    assign rd = RAM[a[31:2]]; // word aligned
+
    
 endmodule // imem
 
@@ -594,7 +603,7 @@ module dmem (input  logic        clk, we,
 	     input  logic [31:0] a, wd,
 	     output logic [31:0] rd);
    
-   logic [31:0] 		 RAM[255:0];
+   logic [31:0] 		 RAM[2047:0];
    
    assign rd = RAM[a[31:2]]; // word aligned
    always_ff @(posedge clk)
@@ -636,5 +645,27 @@ module alu(input  logic [31:0] a, b,
    assign ltu = $unsigned(a) < $unsigned(b);
    assign v = ~(alucontrol[0] ^ a[31] ^ b[31]) & (a[31] ^ sum[31]) & isAddSub;
    
+endmodule
+
+module storeloadcase (input logic [31:0] WriteDataM1, ReadDataW1,
+                      input logic [2:0] funct3M, funct3W,
+                      output logic [31:0] WriteDataM2, ReadDataW2);
+
+  always_comb
+      case(funct3W)  // funct3
+        3'b000:   ReadDataW2 = {{24{ReadDataW1[7]}}, ReadDataW1[7:0]};    // Load Byte
+        3'b001:   ReadDataW2 = {{16{ReadDataW1[15]}}, ReadDataW1[15:0]};  // Load Half
+        3'b100:   ReadDataW2 = {24'b0, ReadDataW1[7:0]};                 // Load Byte Unsigned
+        3'b101:   ReadDataW2 = {16'b0, ReadDataW1[15:0]};                // Load Half Unsigned
+        default:  ReadDataW2 = ReadDataW1; // Load Word
+      endcase
+    
+  always_comb
+      case(funct3M)  // funct3
+        3'b000:   WriteDataM2 = {{24{WriteDataM1[7]}}, WriteDataM1[7:0]};   // Store Byte
+        3'b001:   WriteDataM2 = {{16{WriteDataM1[15]}}, WriteDataM1[15:0]}; // Store Half
+        default:  WriteDataM2 = WriteDataM1; // Store Word
+      endcase
+
 endmodule
 

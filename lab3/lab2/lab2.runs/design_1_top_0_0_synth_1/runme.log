@@ -1,0 +1,393 @@
+
+*** Running vivado
+    with args -log design_1_top_0_0.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source design_1_top_0_0.tcl
+
+
+****** Vivado v2023.2 (64-bit)
+  **** SW Build 4029153 on Fri Oct 13 20:13:54 MDT 2023
+  **** IP Build 4028589 on Sat Oct 14 00:45:43 MDT 2023
+  **** SharedData Build 4025554 on Tue Oct 10 17:18:54 MDT 2023
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+    ** Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
+
+source design_1_top_0_0.tcl -notrace
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1700] Loaded user IP repository '/home/11-comp-arch-f/Desktop/ecen4243S25QR/lab3/lab2/lab2.ipdefs/ip_repo_BAK_0_0_0'.
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/opt/Xilinx/Vivado/2023.2/data/ip'.
+INFO: [IP_Flow 19-6924] IPCACHE: Running cache check for IP inst: design_1_top_0_0
+Command: synth_design -top design_1_top_0_0 -part xc7z020clg484-1 -incremental_mode off -mode out_of_context
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xc7z020'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7z020'
+INFO: [Device 21-403] Loading part xc7z020clg484-1
+INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 4 processes.
+INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
+INFO: [Synth 8-7075] Helper process launched with PID 75934
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:02 ; elapsed = 00:00:02 . Memory (MB): peak = 2048.469 ; gain = 404.684 ; free physical = 1154 ; free virtual = 10360
+---------------------------------------------------------------------------------
+INFO: [Synth 8-11241] undeclared symbol 'StallE', assumed default net type 'wire' [/home/11-comp-arch-f/Desktop/ecen4243S25QR/lab3/lab2/lab2.srcs/sources_1/imports/Desktop/riscv_pipelined.sv:214]
+INFO: [Synth 8-11241] undeclared symbol 'StallM', assumed default net type 'wire' [/home/11-comp-arch-f/Desktop/ecen4243S25QR/lab3/lab2/lab2.srcs/sources_1/imports/Desktop/riscv_pipelined.sv:214]
+INFO: [Synth 8-6157] synthesizing module 'design_1_top_0_0' [/home/11-comp-arch-f/Desktop/ecen4243S25QR/lab3/lab2/lab2.srcs/sources_1/bd/design_1/ip/design_1_top_0_0/synth/design_1_top_0_0.v:53]
+INFO: [Synth 8-6157] synthesizing module 'top' [/home/11-comp-arch-f/Desktop/ecen4243S25QR/lab3/lab2/lab2.srcs/sources_1/imports/fpga/src/top.v:2]
+INFO: [Synth 8-6157] synthesizing module 'riscv' [/home/11-comp-arch-f/Desktop/ecen4243S25QR/lab3/lab2/lab2.srcs/sources_1/imports/Desktop/riscv_pipelined.sv:183]
+INFO: [Synth 8-6157] synthesizing module 'controller' [/home/11-comp-arch-f/Desktop/ecen4243S25QR/lab3/lab2/lab2.srcs/sources_1/imports/Desktop/riscv_pipelined.sv:231]
+INFO: [Synth 8-6157] synthesizing module 'maindec' [/home/11-comp-arch-f/Desktop/ecen4243S25QR/lab3/lab2/lab2.srcs/sources_1/imports/Desktop/riscv_pipelined.sv:289]
+INFO: [Synth 8-6155] done synthesizing module 'maindec' (0#1) [/home/11-comp-arch-f/Desktop/ecen4243S25QR/lab3/lab2/lab2.srcs/sources_1/imports/Desktop/riscv_pipelined.sv:289]
+INFO: [Synth 8-6157] synthesizing module 'aludec' [/home/11-comp-arch-f/Desktop/ecen4243S25QR/lab3/lab2/lab2.srcs/sources_1/imports/Desktop/riscv_pipelined.sv:320]
+INFO: [Synth 8-226] default block is never used [/home/11-comp-arch-f/Desktop/ecen4243S25QR/lab3/lab2/lab2.srcs/sources_1/imports/Desktop/riscv_pipelined.sv:333]
+INFO: [Synth 8-6155] done synthesizing module 'aludec' (0#1) [/home/11-comp-arch-f/Desktop/ecen4243S25QR/lab3/lab2/lab2.srcs/sources_1/imports/Desktop/riscv_pipelined.sv:320]
+INFO: [Synth 8-6157] synthesizing module 'flopenrc' [/home/11-comp-arch-f/Desktop/ecen4243S25QR/lab3/lab2/lab2.srcs/sources_1/imports/Desktop/riscv_pipelined.sv:559]
+	Parameter WIDTH bound to: 15 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'flopenrc' (0#1) [/home/11-comp-arch-f/Desktop/ecen4243S25QR/lab3/lab2/lab2.srcs/sources_1/imports/Desktop/riscv_pipelined.sv:559]
+INFO: [Synth 8-6157] synthesizing module 'flopenr' [/home/11-comp-arch-f/Desktop/ecen4243S25QR/lab3/lab2/lab2.srcs/sources_1/imports/Desktop/riscv_pipelined.sv:549]
+	Parameter WIDTH bound to: 5 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'flopenr' (0#1) [/home/11-comp-arch-f/Desktop/ecen4243S25QR/lab3/lab2/lab2.srcs/sources_1/imports/Desktop/riscv_pipelined.sv:549]
+INFO: [Synth 8-6157] synthesizing module 'flopr' [/home/11-comp-arch-f/Desktop/ecen4243S25QR/lab3/lab2/lab2.srcs/sources_1/imports/Desktop/riscv_pipelined.sv:539]
+	Parameter WIDTH bound to: 3 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'flopr' (0#1) [/home/11-comp-arch-f/Desktop/ecen4243S25QR/lab3/lab2/lab2.srcs/sources_1/imports/Desktop/riscv_pipelined.sv:539]
+INFO: [Synth 8-6155] done synthesizing module 'controller' (0#1) [/home/11-comp-arch-f/Desktop/ecen4243S25QR/lab3/lab2/lab2.srcs/sources_1/imports/Desktop/riscv_pipelined.sv:231]
+INFO: [Synth 8-6157] synthesizing module 'datapath' [/home/11-comp-arch-f/Desktop/ecen4243S25QR/lab3/lab2/lab2.srcs/sources_1/imports/Desktop/riscv_pipelined.sv:350]
+INFO: [Synth 8-6157] synthesizing module 'mux2' [/home/11-comp-arch-f/Desktop/ecen4243S25QR/lab3/lab2/lab2.srcs/sources_1/imports/Desktop/riscv_pipelined.sv:585]
+	Parameter WIDTH bound to: 32 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'mux2' (0#1) [/home/11-comp-arch-f/Desktop/ecen4243S25QR/lab3/lab2/lab2.srcs/sources_1/imports/Desktop/riscv_pipelined.sv:585]
+INFO: [Synth 8-6157] synthesizing module 'flopenr__parameterized0' [/home/11-comp-arch-f/Desktop/ecen4243S25QR/lab3/lab2/lab2.srcs/sources_1/imports/Desktop/riscv_pipelined.sv:549]
+	Parameter WIDTH bound to: 32 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'flopenr__parameterized0' (0#1) [/home/11-comp-arch-f/Desktop/ecen4243S25QR/lab3/lab2/lab2.srcs/sources_1/imports/Desktop/riscv_pipelined.sv:549]
+INFO: [Synth 8-6157] synthesizing module 'adder' [/home/11-comp-arch-f/Desktop/ecen4243S25QR/lab3/lab2/lab2.srcs/sources_1/imports/Desktop/riscv_pipelined.sv:513]
+INFO: [Synth 8-6155] done synthesizing module 'adder' (0#1) [/home/11-comp-arch-f/Desktop/ecen4243S25QR/lab3/lab2/lab2.srcs/sources_1/imports/Desktop/riscv_pipelined.sv:513]
+INFO: [Synth 8-6157] synthesizing module 'flopenrc__parameterized0' [/home/11-comp-arch-f/Desktop/ecen4243S25QR/lab3/lab2/lab2.srcs/sources_1/imports/Desktop/riscv_pipelined.sv:559]
+	Parameter WIDTH bound to: 96 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'flopenrc__parameterized0' (0#1) [/home/11-comp-arch-f/Desktop/ecen4243S25QR/lab3/lab2/lab2.srcs/sources_1/imports/Desktop/riscv_pipelined.sv:559]
+INFO: [Synth 8-6157] synthesizing module 'regfile' [/home/11-comp-arch-f/Desktop/ecen4243S25QR/lab3/lab2/lab2.srcs/sources_1/imports/Desktop/riscv_pipelined.sv:492]
+INFO: [Synth 8-6155] done synthesizing module 'regfile' (0#1) [/home/11-comp-arch-f/Desktop/ecen4243S25QR/lab3/lab2/lab2.srcs/sources_1/imports/Desktop/riscv_pipelined.sv:492]
+INFO: [Synth 8-6157] synthesizing module 'extend' [/home/11-comp-arch-f/Desktop/ecen4243S25QR/lab3/lab2/lab2.srcs/sources_1/imports/Desktop/riscv_pipelined.sv:519]
+INFO: [Synth 8-6155] done synthesizing module 'extend' (0#1) [/home/11-comp-arch-f/Desktop/ecen4243S25QR/lab3/lab2/lab2.srcs/sources_1/imports/Desktop/riscv_pipelined.sv:519]
+INFO: [Synth 8-6157] synthesizing module 'flopenrc__parameterized1' [/home/11-comp-arch-f/Desktop/ecen4243S25QR/lab3/lab2/lab2.srcs/sources_1/imports/Desktop/riscv_pipelined.sv:559]
+	Parameter WIDTH bound to: 180 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'flopenrc__parameterized1' (0#1) [/home/11-comp-arch-f/Desktop/ecen4243S25QR/lab3/lab2/lab2.srcs/sources_1/imports/Desktop/riscv_pipelined.sv:559]
+INFO: [Synth 8-6157] synthesizing module 'mux3' [/home/11-comp-arch-f/Desktop/ecen4243S25QR/lab3/lab2/lab2.srcs/sources_1/imports/Desktop/riscv_pipelined.sv:593]
+	Parameter WIDTH bound to: 32 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'mux3' (0#1) [/home/11-comp-arch-f/Desktop/ecen4243S25QR/lab3/lab2/lab2.srcs/sources_1/imports/Desktop/riscv_pipelined.sv:593]
+INFO: [Synth 8-6157] synthesizing module 'alu' [/home/11-comp-arch-f/Desktop/ecen4243S25QR/lab3/lab2/lab2.srcs/sources_1/imports/Desktop/riscv_pipelined.sv:632]
+INFO: [Synth 8-6155] done synthesizing module 'alu' (0#1) [/home/11-comp-arch-f/Desktop/ecen4243S25QR/lab3/lab2/lab2.srcs/sources_1/imports/Desktop/riscv_pipelined.sv:632]
+INFO: [Synth 8-6157] synthesizing module 'flopenr__parameterized1' [/home/11-comp-arch-f/Desktop/ecen4243S25QR/lab3/lab2/lab2.srcs/sources_1/imports/Desktop/riscv_pipelined.sv:549]
+	Parameter WIDTH bound to: 136 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'flopenr__parameterized1' (0#1) [/home/11-comp-arch-f/Desktop/ecen4243S25QR/lab3/lab2/lab2.srcs/sources_1/imports/Desktop/riscv_pipelined.sv:549]
+INFO: [Synth 8-6157] synthesizing module 'storeloadcase' [/home/11-comp-arch-f/Desktop/ecen4243S25QR/lab3/lab2/lab2.srcs/sources_1/imports/Desktop/riscv_pipelined.sv:668]
+INFO: [Synth 8-6155] done synthesizing module 'storeloadcase' (0#1) [/home/11-comp-arch-f/Desktop/ecen4243S25QR/lab3/lab2/lab2.srcs/sources_1/imports/Desktop/riscv_pipelined.sv:668]
+INFO: [Synth 8-6157] synthesizing module 'flopr__parameterized0' [/home/11-comp-arch-f/Desktop/ecen4243S25QR/lab3/lab2/lab2.srcs/sources_1/imports/Desktop/riscv_pipelined.sv:539]
+	Parameter WIDTH bound to: 136 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'flopr__parameterized0' (0#1) [/home/11-comp-arch-f/Desktop/ecen4243S25QR/lab3/lab2/lab2.srcs/sources_1/imports/Desktop/riscv_pipelined.sv:539]
+INFO: [Synth 8-6157] synthesizing module 'mux4' [/home/11-comp-arch-f/Desktop/ecen4243S25QR/lab3/lab2/lab2.srcs/sources_1/imports/Desktop/riscv_pipelined.sv:601]
+	Parameter WIDTH bound to: 32 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'mux4' (0#1) [/home/11-comp-arch-f/Desktop/ecen4243S25QR/lab3/lab2/lab2.srcs/sources_1/imports/Desktop/riscv_pipelined.sv:601]
+INFO: [Synth 8-6155] done synthesizing module 'datapath' (0#1) [/home/11-comp-arch-f/Desktop/ecen4243S25QR/lab3/lab2/lab2.srcs/sources_1/imports/Desktop/riscv_pipelined.sv:350]
+INFO: [Synth 8-6157] synthesizing module 'hazard' [/home/11-comp-arch-f/Desktop/ecen4243S25QR/lab3/lab2/lab2.srcs/sources_1/imports/Desktop/riscv_pipelined.sv:460]
+INFO: [Synth 8-6155] done synthesizing module 'hazard' (0#1) [/home/11-comp-arch-f/Desktop/ecen4243S25QR/lab3/lab2/lab2.srcs/sources_1/imports/Desktop/riscv_pipelined.sv:460]
+INFO: [Synth 8-6155] done synthesizing module 'riscv' (0#1) [/home/11-comp-arch-f/Desktop/ecen4243S25QR/lab3/lab2/lab2.srcs/sources_1/imports/Desktop/riscv_pipelined.sv:183]
+INFO: [Synth 8-6157] synthesizing module 'imem' [/home/11-comp-arch-f/Desktop/ecen4243S25QR/lab3/lab2/lab2.srcs/sources_1/imports/fpga/src/imem.sv:1]
+INFO: [Synth 8-3876] $readmem data file 'memfile.dat' is read successfully [/home/11-comp-arch-f/Desktop/ecen4243S25QR/lab3/lab2/lab2.srcs/sources_1/imports/fpga/src/imem.sv:6]
+INFO: [Synth 8-6155] done synthesizing module 'imem' (0#1) [/home/11-comp-arch-f/Desktop/ecen4243S25QR/lab3/lab2/lab2.srcs/sources_1/imports/fpga/src/imem.sv:1]
+INFO: [Synth 8-6157] synthesizing module 'MemControl' [/home/11-comp-arch-f/Desktop/ecen4243S25QR/lab3/lab2/lab2.srcs/sources_1/imports/fpga/src/memcontroller.sv:1]
+INFO: [Synth 8-6155] done synthesizing module 'MemControl' (0#1) [/home/11-comp-arch-f/Desktop/ecen4243S25QR/lab3/lab2/lab2.srcs/sources_1/imports/fpga/src/memcontroller.sv:1]
+INFO: [Synth 8-6155] done synthesizing module 'top' (0#1) [/home/11-comp-arch-f/Desktop/ecen4243S25QR/lab3/lab2/lab2.srcs/sources_1/imports/fpga/src/top.v:2]
+INFO: [Synth 8-6155] done synthesizing module 'design_1_top_0_0' (0#1) [/home/11-comp-arch-f/Desktop/ecen4243S25QR/lab3/lab2/lab2.srcs/sources_1/bd/design_1/ip/design_1_top_0_0/synth/design_1_top_0_0.v:53]
+INFO: [Synth 8-6071] Mark debug on the nets applies keep_hierarchy on instance 'inst'. This will prevent further optimization [/home/11-comp-arch-f/Desktop/ecen4243S25QR/lab3/lab2/lab2.srcs/sources_1/bd/design_1/ip/design_1_top_0_0/synth/design_1_top_0_0.v:82]
+INFO: [Synth 8-6071] Mark debug on the nets applies keep_hierarchy on instance 'memcontrol'. This will prevent further optimization [/home/11-comp-arch-f/Desktop/ecen4243S25QR/lab3/lab2/lab2.srcs/sources_1/imports/fpga/src/top.v:30]
+INFO: [Synth 8-6071] Mark debug on the nets applies keep_hierarchy on instance 'riscv'. This will prevent further optimization [/home/11-comp-arch-f/Desktop/ecen4243S25QR/lab3/lab2/lab2.srcs/sources_1/imports/fpga/src/top.v:18]
+INFO: [Synth 8-6071] Mark debug on the nets applies keep_hierarchy on instance 'imem'. This will prevent further optimization [/home/11-comp-arch-f/Desktop/ecen4243S25QR/lab3/lab2/lab2.srcs/sources_1/imports/fpga/src/top.v:28]
+WARNING: [Synth 8-7129] Port a[1] in module imem is either unconnected or has no load
+WARNING: [Synth 8-7129] Port a[0] in module imem is either unconnected or has no load
+WARNING: [Synth 8-7129] Port MemWriteM in module datapath is either unconnected or has no load
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 2139.438 ; gain = 495.652 ; free physical = 1046 ; free virtual = 10253
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 2154.281 ; gain = 510.496 ; free physical = 1045 ; free virtual = 10253
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 2154.281 ; gain = 510.496 ; free physical = 1045 ; free virtual = 10253
+---------------------------------------------------------------------------------
+Netlist sorting complete. Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.01 . Memory (MB): peak = 2154.281 ; gain = 0.000 ; free physical = 1046 ; free virtual = 10253
+INFO: [Project 1-570] Preparing netlist for logic optimization
+
+Processing XDC Constraints
+Initializing timing engine
+Completed Processing XDC Constraints
+
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2299.031 ; gain = 0.000 ; free physical = 1053 ; free virtual = 10260
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Constraint Validation Runtime : Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.01 . Memory (MB): peak = 2299.066 ; gain = 0.000 ; free physical = 1051 ; free virtual = 10258
+INFO: [Designutils 20-5008] Incremental synthesis strategy off
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 2299.066 ; gain = 655.281 ; free physical = 1067 ; free virtual = 10268
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xc7z020clg484-1
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 2299.066 ; gain = 655.281 ; free physical = 1067 ; free virtual = 10268
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying 'set_property' XDC Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 2299.066 ; gain = 655.281 ; free physical = 1067 ; free virtual = 10268
+---------------------------------------------------------------------------------
+INFO: [Synth 8-802] inferred FSM for state register 'state_reg' in module 'MemControl'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                    Idle |                              000 |                              000
+              WriteStart |                              001 |                              100
+                WriteMem |                              010 |                              101
+               WriteData |                              011 |                              110
+               ReadStart |                              100 |                              001
+                 ReadMem |                              101 |                              010
+                ReadData |                              110 |                              011
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'state_reg' using encoding 'sequential' in module 'MemControl'
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 2299.066 ; gain = 655.281 ; free physical = 1065 ; free virtual = 10267
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input   32 Bit       Adders := 3     
+	   3 Input   32 Bit       Adders := 1     
+	   2 Input    6 Bit       Adders := 1     
++---XORs : 
+	   2 Input     32 Bit         XORs := 2     
+	   2 Input      1 Bit         XORs := 2     
+	   3 Input      1 Bit         XORs := 1     
++---Registers : 
+	              180 Bit    Registers := 1     
+	              136 Bit    Registers := 2     
+	               96 Bit    Registers := 1     
+	               32 Bit    Registers := 1     
+	               15 Bit    Registers := 1     
+	                5 Bit    Registers := 1     
+	                3 Bit    Registers := 1     
++---Muxes : 
+	   2 Input  180 Bit        Muxes := 1     
+	   2 Input   96 Bit        Muxes := 1     
+	   2 Input   32 Bit        Muxes := 16    
+	  16 Input   32 Bit        Muxes := 1     
+	   2 Input   15 Bit        Muxes := 1     
+	  11 Input   12 Bit        Muxes := 1     
+	   2 Input    4 Bit        Muxes := 2     
+	   8 Input    4 Bit        Muxes := 1     
+	   7 Input    3 Bit        Muxes := 2     
+	   2 Input    3 Bit        Muxes := 4     
+	   2 Input    2 Bit        Muxes := 4     
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 220 (col length:60)
+BRAMs: 280 (col length: RAMB18 60 RAMB36 30)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+WARNING: [Synth 8-7080] Parallel synthesis criteria is not met
+WARNING: [Synth 8-7129] Port a[31] in module imem is either unconnected or has no load
+WARNING: [Synth 8-7129] Port a[30] in module imem is either unconnected or has no load
+WARNING: [Synth 8-7129] Port a[29] in module imem is either unconnected or has no load
+WARNING: [Synth 8-7129] Port a[28] in module imem is either unconnected or has no load
+WARNING: [Synth 8-7129] Port a[27] in module imem is either unconnected or has no load
+WARNING: [Synth 8-7129] Port a[26] in module imem is either unconnected or has no load
+WARNING: [Synth 8-7129] Port a[25] in module imem is either unconnected or has no load
+WARNING: [Synth 8-7129] Port a[24] in module imem is either unconnected or has no load
+WARNING: [Synth 8-7129] Port a[23] in module imem is either unconnected or has no load
+WARNING: [Synth 8-7129] Port a[22] in module imem is either unconnected or has no load
+WARNING: [Synth 8-7129] Port a[21] in module imem is either unconnected or has no load
+WARNING: [Synth 8-7129] Port a[20] in module imem is either unconnected or has no load
+WARNING: [Synth 8-7129] Port a[19] in module imem is either unconnected or has no load
+WARNING: [Synth 8-7129] Port a[18] in module imem is either unconnected or has no load
+WARNING: [Synth 8-7129] Port a[17] in module imem is either unconnected or has no load
+WARNING: [Synth 8-7129] Port a[16] in module imem is either unconnected or has no load
+WARNING: [Synth 8-7129] Port a[15] in module imem is either unconnected or has no load
+WARNING: [Synth 8-7129] Port a[14] in module imem is either unconnected or has no load
+WARNING: [Synth 8-7129] Port a[13] in module imem is either unconnected or has no load
+WARNING: [Synth 8-7129] Port a[12] in module imem is either unconnected or has no load
+WARNING: [Synth 8-7129] Port a[11] in module imem is either unconnected or has no load
+WARNING: [Synth 8-7129] Port a[10] in module imem is either unconnected or has no load
+WARNING: [Synth 8-7129] Port a[9] in module imem is either unconnected or has no load
+WARNING: [Synth 8-7129] Port a[8] in module imem is either unconnected or has no load
+WARNING: [Synth 8-7129] Port a[7] in module imem is either unconnected or has no load
+WARNING: [Synth 8-7129] Port a[6] in module imem is either unconnected or has no load
+WARNING: [Synth 8-7129] Port a[1] in module imem is either unconnected or has no load
+WARNING: [Synth 8-7129] Port a[0] in module imem is either unconnected or has no load
+WARNING: [Synth 8-7129] Port MemWriteM in module datapath is either unconnected or has no load
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:11 ; elapsed = 00:00:11 . Memory (MB): peak = 2299.066 ; gain = 655.281 ; free physical = 1062 ; free virtual = 10266
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+
+Distributed RAM: Preliminary Mapping Report (see note below)
++------------+--------------+-----------+----------------------+--------------+
+|Module Name | RTL Object   | Inference | Size (Depth x Width) | Primitives   | 
++------------+--------------+-----------+----------------------+--------------+
+|inst/riscv  | dp/rf/rf_reg | Implied   | 32 x 32              | RAM32M x 12  | 
++------------+--------------+-----------+----------------------+--------------+
+
+Note: The table above is a preliminary report that shows the Distributed RAMs at the current stage of the synthesis flow. Some Distributed RAMs may be reimplemented as non Distributed RAM primitives later in the synthesis flow. Multiple instantiated RAMs are reported only once.
+---------------------------------------------------------------------------------
+Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying XDC Timing Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:13 ; elapsed = 00:00:13 . Memory (MB): peak = 2299.066 ; gain = 655.281 ; free physical = 1066 ; free virtual = 10269
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:00:14 ; elapsed = 00:00:14 . Memory (MB): peak = 2299.066 ; gain = 655.281 ; free physical = 1071 ; free virtual = 10276
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+
+Distributed RAM: Final Mapping Report
++------------+--------------+-----------+----------------------+--------------+
+|Module Name | RTL Object   | Inference | Size (Depth x Width) | Primitives   | 
++------------+--------------+-----------+----------------------+--------------+
+|inst/riscv  | dp/rf/rf_reg | Implied   | 32 x 32              | RAM32M x 12  | 
++------------+--------------+-----------+----------------------+--------------+
+
+---------------------------------------------------------------------------------
+Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:00:14 ; elapsed = 00:00:14 . Memory (MB): peak = 2299.066 ; gain = 655.281 ; free physical = 1080 ; free virtual = 10285
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:00:16 ; elapsed = 00:00:16 . Memory (MB): peak = 2299.066 ; gain = 655.281 ; free physical = 1117 ; free virtual = 10247
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:16 ; elapsed = 00:00:16 . Memory (MB): peak = 2299.066 ; gain = 655.281 ; free physical = 1117 ; free virtual = 10247
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:16 ; elapsed = 00:00:16 . Memory (MB): peak = 2299.066 ; gain = 655.281 ; free physical = 1117 ; free virtual = 10247
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:16 ; elapsed = 00:00:16 . Memory (MB): peak = 2299.066 ; gain = 655.281 ; free physical = 1117 ; free virtual = 10247
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:16 ; elapsed = 00:00:16 . Memory (MB): peak = 2299.066 ; gain = 655.281 ; free physical = 1116 ; free virtual = 10246
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:16 ; elapsed = 00:00:16 . Memory (MB): peak = 2299.066 ; gain = 655.281 ; free physical = 1116 ; free virtual = 10246
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+Report BlackBoxes: 
++-+--------------+----------+
+| |BlackBox name |Instances |
++-+--------------+----------+
++-+--------------+----------+
+
+Report Cell Usage: 
++------+---------+------+
+|      |Cell     |Count |
++------+---------+------+
+|1     |CARRY4   |    36|
+|2     |LUT1     |     4|
+|3     |LUT2     |    55|
+|4     |LUT3     |   143|
+|5     |LUT4     |    93|
+|6     |LUT5     |   172|
+|7     |LUT6     |   586|
+|8     |RAM32M   |    10|
+|9     |RAM32X1D |     4|
+|10    |FDCE     |   592|
+|11    |FDRE     |     3|
++------+---------+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:16 ; elapsed = 00:00:16 . Memory (MB): peak = 2299.066 ; gain = 655.281 ; free physical = 1116 ; free virtual = 10246
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 0 critical warnings and 30 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:15 ; elapsed = 00:00:15 . Memory (MB): peak = 2299.066 ; gain = 510.496 ; free physical = 1129 ; free virtual = 10259
+Synthesis Optimization Complete : Time (s): cpu = 00:00:16 ; elapsed = 00:00:16 . Memory (MB): peak = 2299.066 ; gain = 655.281 ; free physical = 1129 ; free virtual = 10259
+INFO: [Project 1-571] Translating synthesized netlist
+Netlist sorting complete. Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.01 . Memory (MB): peak = 2299.066 ; gain = 0.000 ; free physical = 1399 ; free virtual = 10528
+INFO: [Netlist 29-17] Analyzing 50 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-138] Pushed 1 inverter(s) to 14 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2299.066 ; gain = 0.000 ; free physical = 1399 ; free virtual = 10529
+INFO: [Project 1-111] Unisim Transformation Summary:
+  A total of 14 instances were transformed.
+  RAM32M => RAM32M (inverted pins: WCLK) (RAMD32(x6), RAMS32(x2)): 10 instances
+  RAM32X1D => RAM32X1D (inverted pins: WCLK) (RAMD32(x2)): 4 instances
+
+Synth Design complete | Checksum: 381cd164
+INFO: [Common 17-83] Releasing license: Synthesis
+81 Infos, 33 Warnings, 0 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:00:19 ; elapsed = 00:00:18 . Memory (MB): peak = 2299.066 ; gain = 1003.781 ; free physical = 1405 ; free virtual = 10530
+INFO: [Common 17-2834] synth_design peak Physical Memory [PSS] (MB): overall = 1864.952; main = 1538.113; forked = 378.871
+INFO: [Common 17-2834] synth_design peak Virtual Memory [VSS] (MB): overall = 3256.250; main = 2299.035; forked = 989.230
+Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2323.043 ; gain = 0.000 ; free physical = 1404 ; free virtual = 10529
+INFO: [Common 17-1381] The checkpoint '/home/11-comp-arch-f/Desktop/ecen4243S25QR/lab3/lab2/lab2.runs/design_1_top_0_0_synth_1/design_1_top_0_0.dcp' has been generated.
+INFO: [Coretcl 2-1648] Added synthesis output to IP cache for IP design_1_top_0_0, cache-ID = f9fedfe242f5d05a
+INFO: [Coretcl 2-1174] Renamed 19 cell refs.
+Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2323.043 ; gain = 0.000 ; free physical = 1348 ; free virtual = 10474
+INFO: [Common 17-1381] The checkpoint '/home/11-comp-arch-f/Desktop/ecen4243S25QR/lab3/lab2/lab2.runs/design_1_top_0_0_synth_1/design_1_top_0_0.dcp' has been generated.
+INFO: [runtcl-4] Executing : report_utilization -file design_1_top_0_0_utilization_synth.rpt -pb design_1_top_0_0_utilization_synth.pb
+INFO: [Common 17-206] Exiting Vivado at Fri Apr 11 17:21:15 2025...

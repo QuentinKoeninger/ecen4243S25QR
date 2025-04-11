@@ -14,7 +14,7 @@
 # //
 # do riscv_pipelined.do
 # QuestaSim-64 vlog 2024.3_2 Compiler 2024.11 Nov 25 2024
-# Start time: 14:42:14 on Apr 07,2025
+# Start time: 17:09:00 on Apr 11,2025
 # vlog -reportprogress 300 riscv_pipelined.sv 
 # -- Compiling module testbench
 # -- Compiling module top
@@ -41,16 +41,27 @@
 # 
 # Top level modules:
 # 	testbench
-# End time: 14:42:14 on Apr 07,2025, Elapsed time: 0:00:00
+# 	floprc
+# End time: 17:09:00 on Apr 11,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# QuestaSim-64 vlog 2024.3_2 Compiler 2024.11 Nov 25 2024
+# Start time: 17:09:00 on Apr 11,2025
+# vlog -reportprogress 300 memcontroller.sv 
+# -- Compiling module MemControl
+# 
+# Top level modules:
+# 	MemControl
+# End time: 17:09:00 on Apr 11,2025, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vsim -debugdb -voptargs="+acc" work.testbench 
-# Start time: 14:42:14 on Apr 07,2025
+# Start time: 17:09:00 on Apr 11,2025
 # ** Note: (vsim-3812) Design is being optimized...
 # ** Note: (vsim-8611) Generating debug db.
 # ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility. The +acc switch would be deprecated in a future release.
 # Support of the MGLS_LICENSE_FILE and LM_LICENSE_FILE licensing environment variables will be discontinued starting with the 2025.1 release. Please update to using the SALT_LICENSE_SERVER variable.
 # Please contact Siemens EDA Customer Support (https://support.sw.siemens.com/) for assistance.
-# ** Note: (vopt-4301) Memory core inferred for signal 'RAM' width=32, depth=2048, type=RAM at location riscv_pipelined.sv:606
+# ** Note: (vopt-4301) Memory core inferred for signal 'RAM' width=32, depth=2048, type=RAM at location riscv_pipelined.sv:624
+# ** Note: (vopt-143) Recognized 1 FSM in module "MemControl(fast)".
 # ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=1.
 # Loading sv_std.std
 # Loading work.testbench(fast)
@@ -59,25 +70,27 @@
 # Loading work.controller(fast)
 # Loading work.maindec(fast)
 # Loading work.aludec(fast)
-# Loading work.floprc(fast)
+# Loading work.flopenrc(fast)
+# Loading work.flopenr(fast)
 # Loading work.flopr(fast)
-# Loading work.flopr(fast__1)
 # Loading work.datapath(fast)
 # Loading work.mux2(fast)
-# Loading work.flopenr(fast)
+# Loading work.flopenr(fast__1)
 # Loading work.adder(fast)
-# Loading work.flopenrc(fast)
+# Loading work.flopenrc(fast__1)
 # Loading work.regfile(fast)
 # Loading work.extend(fast)
-# Loading work.floprc(fast__1)
+# Loading work.flopenrc(fast__2)
 # Loading work.mux3(fast)
 # Loading work.alu(fast)
-# Loading work.flopr(fast__2)
+# Loading work.flopenr(fast__2)
 # Loading work.storeloadcase(fast)
+# Loading work.flopr(fast__1)
 # Loading work.mux4(fast)
 # Loading work.hazard(fast)
 # Loading work.imem(fast)
 # Loading work.dmem(fast)
+# Loading work.MemControl(fast)
 # ** Note: (vsim-8900) Creating design debug database vsim.dbg.
-# End time: 14:43:42 on Apr 07,2025, Elapsed time: 0:01:28
+# End time: 17:13:03 on Apr 11,2025, Elapsed time: 0:04:03
 # Errors: 0, Warnings: 1
